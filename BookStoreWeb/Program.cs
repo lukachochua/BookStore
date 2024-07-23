@@ -10,6 +10,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(
         builder.Configuration.GetConnectionString("DefaultConnection")
         ));
 
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
