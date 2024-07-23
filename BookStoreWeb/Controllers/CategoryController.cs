@@ -13,8 +13,8 @@ namespace BookStoreWeb.Controllers
         }
         public IActionResult index()
         {
-            var objCategoryList = _db.Categories.ToList(); 
-            return View();
+            IEnumerable<Category> objCategoryList = _db.Categories.ToList(); 
+            return View(objCategoryList);
         }
     }
 }
