@@ -22,5 +22,15 @@ namespace BookStoreWeb.Controllers
         {
             return View();
         }
+
+        //POST
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult create(Category category)
+        {
+            _db.Categories.Add(category);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }
