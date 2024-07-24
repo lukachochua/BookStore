@@ -26,11 +26,21 @@ namespace BookStoreWeb.Controllers
         //POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult create(Category category)
+        public IActionResult Create(Category category)
         {
-            _db.Categories.Add(category);
-            _db.SaveChanges();
-            return RedirectToAction("Index");
+            if (category.Name == category.DisplayOrder.ToString())
+            {
+                ModelState.AddModelError("CustomError", "The DisplayOrder cannot exactly match the Name.");
+            }
+
+            if (ModelState.IsValid)
+            {
+                _db.Categories.Add(category);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(category); 
         }
     }
 }
